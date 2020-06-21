@@ -7,12 +7,13 @@ export class DomListener {
     }
     this.$root = $root
     this.listeners = listeners
+    // console.log('root: ', this.$root)
   }
 
   initDOMListeners() {
     this.listeners.forEach(listener => {
       const method = getMethodName(listener)
-      console.log(method)
+      // console.log(method)
       if (!this[method]) {
         const name = this.name || ''
         throw new Error(
@@ -20,12 +21,17 @@ export class DomListener {
         )
       }
 
+      // Тоже что и addEventListener
       this.$root.on(listener, this[method].bind(this))
     })
   }
 
   removeDOMListeners() {
-
+    this.listeners.forEach(listener => {
+      const method = getMethodName(listener)
+      // Тоже что и removeEventListener
+      this.$root.off(listener, this[method])
+    })
   }
 }
 
