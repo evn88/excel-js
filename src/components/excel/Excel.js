@@ -15,10 +15,10 @@ export class Excel {
       console.log('component: ', component.name)
 
       // DEBUG
-      if (component.name) {
-        window['c' + component.name] = component
-        console.log('!!! Component name: ' + component.name)
-      }
+      // if (component.name) {
+      //   window['c' + component.name] = component
+      //   console.log('!!! Component name: ' + component.name)
+      // }
 
       $el.html(component.toHTML())
       $root.append($el)
