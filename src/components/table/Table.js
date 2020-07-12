@@ -6,27 +6,11 @@ export class Table extends ExcelComponent {
 
   constructor($root) {
     super($root, {
-      listeners: ['click', 'mousedown', 'mousemove', 'mousedown', 'mouseup']
+      // listeners: ['click', 'mousedown', 'mousemove', 'mousedown', 'mouseup']
     })
   }
 
   toHTML() {
     return createTable()
-  }
-
-  onClick() {
-    console.log('click')
-  }
-
-  onMousedown(event) {
-    console.log('mousedown', event.target)
-  }
-
-  onMousemove() {
-    console.log('mousemove')
-  }
-
-  onMouseup() {
-    console.log('mouseup')
   }
 }
