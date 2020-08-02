@@ -21,6 +21,8 @@ export class Table extends ExcelComponent {
       const $parent = $resizer.closest('[data-type="resizable"]')
       const coords = $parent.getCoords()
 
+      const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`)
+
       document.onmousemove = e => {
         console.log('parent', $parent.data.col)
 
@@ -28,8 +30,7 @@ export class Table extends ExcelComponent {
           const deltaX = e.pageX - coords.right
           const valueX = coords.width + deltaX
           $parent.$el.style.width = valueX + 'px'
-          document.querySelectorAll(`[data-col="${$parent.data.col}"]`)
-              .forEach(el => el.style.width = valueX + 'px')
+          cells.forEach(el => el.style.width = valueX + 'px')
         } else {
           const deltaY = e.pageY - coords.bottom
           const valueY = coords.height + deltaY
@@ -43,3 +44,11 @@ export class Table extends ExcelComponent {
     }
   }
 }
+
+
+// 313 msScripting
+// 2519 msRendering
+// 1247 msPainting
+// 588 msSystem
+// 4540 msIdle
+// 9207 msTotal
