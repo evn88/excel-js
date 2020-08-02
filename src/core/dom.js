@@ -53,6 +53,12 @@ class Dom {
   findAll(selector) {
     return this.$el.querySelectorAll(selector)
   }
+
+  css(styles = {}) {
+    Object.keys(styles).forEach(key => {
+      return this.$el.style[key] = styles[key]
+    })
+  }
 }
 
 

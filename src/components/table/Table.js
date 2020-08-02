@@ -20,21 +20,24 @@ export class Table extends ExcelComponent {
       const $resizer = $(event.target)
       const $parent = $resizer.closest('[data-type="resizable"]')
       const coords = $parent.getCoords()
-
       const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`)
 
       document.onmousemove = e => {
-        console.log('parent', $parent.data.col)
-
         if (event.target.dataset.resize === 'col') {
           const deltaX = e.pageX - coords.right
           const valueX = coords.width + deltaX
-          $parent.$el.style.width = valueX + 'px'
+
+          $parent.css({
+            width: valueX + 'px'
+          })
           cells.forEach(el => el.style.width = valueX + 'px')
         } else {
           const deltaY = e.pageY - coords.bottom
           const valueY = coords.height + deltaY
-          $parent.$el.style.height = valueY + 'px'
+
+          $parent.css({
+            height: valueY + 'px'
+          })
         }
       }
 
